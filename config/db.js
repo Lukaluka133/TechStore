@@ -1,4 +1,4 @@
-import mongoose, { mongo, Mongoose } from "mongoose";
+import  { mongo } from "mongoose";
 
 let cached = global.mongoose
 
