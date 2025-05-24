@@ -1,4 +1,4 @@
-import  { mongo } from "mongoose";
+import   mongoose  from "mongoose";
 
 let cached = global.mongoose
 
@@ -16,7 +16,7 @@ async function connectDB() {
             bufferCommands:false
         }
         
-        cached.promise = mongo.connect(`${process.env.MONGODB_URI}/TechStore`, opts).then( mongoose => {
+        cached.promise = mongoose.connect(`${process.env.MONGODB_URI}/TechStore`, opts).then( mongoose => {
             return mongoose
         })
     }
