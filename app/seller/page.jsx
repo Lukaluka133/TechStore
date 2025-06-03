@@ -37,7 +37,7 @@ const AddProduct = () => {
 
       const { data } = await axios.post('/api/product/add', formData, {headers:{Authorization: `Bearer ${token}`}})
 
-      if (data.succes) {
+      if (data.success) {
         toast.success(data.message)
         setFiles([]);
         setName('');
