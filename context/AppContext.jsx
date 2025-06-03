@@ -18,7 +18,7 @@ export const AppContextProvider = (props) => {
     const router = useRouter()
 
     const { user } = useUser()
-    const {getToken} = useAuth()
+    const { getToken } = useAuth()
 
     const [products, setProducts] = useState([])
     const [userData, setUserData] = useState(false)
@@ -27,38 +27,40 @@ export const AppContextProvider = (props) => {
 
     const fetchProductData = async () => {
         try {
-            if (user.publicMetadata.role === 'seller') {
-            setIsSeller(true)
-        }
-        setProducts(productsDummyData)
+            const {data} = await axios.get('/api/product/list')
+            if (data.success) {
+                setProducts(data.products)
+            } else {
+                toast.error(data.message)
+            }
         } catch (error) {
-            
+            toast.error(error.message)
         }
     }
 
     const fetchUserData = async () => {
         try {
             if (user.publicMetadata.role === 'seller') {
-            setIsSeller(true)
-        }
+                setIsSeller(true)
+            }
+            
+            const token = await getToken()
 
-        const token = await getToken()
+            const {data} = await axios.get('/api/user/data',{ headers: { Authorization: `Bearer ${token}`} })
 
-        const {data} = await axios.get('/api/user/data', {headers: {Authorization: `Bearer ${token}`}})
-
-        if (data.success) {
-            setUserData(data.user)
-            setCartItems(data.user.cartItems)
-        } else {
-            toast.error(data.message)
-        }
-
-
+            if (data.success) {
+                setUserData(data.user)
+                setCartItems(data.user.cartItems)
+            } else {
+                toast.error(data.message)
+            }
 
         } catch (error) {
             toast.error(error.message)
         }
     }
+
+
 
     const addToCart = async (itemId) => {
 
@@ -71,6 +73,16 @@ export const AppContextProvider = (props) => {
         }
         setCartItems(cartData);
 
+        if (user) {
+            try {
+                const token = await getToken()
+                await axios.post('/api/cart/update', {cartData}, {headers:{Authorization: `Bearer ${token}`}} )
+
+                toast.success('Item added to cart')
+            } catch (error) {
+                toast.error(error.message)
+            }
+        }
     }
 
     const updateCartQuantity = async (itemId, quantity) => {
@@ -82,7 +94,16 @@ export const AppContextProvider = (props) => {
             cartData[itemId] = quantity;
         }
         setCartItems(cartData)
+        if (user) {
+            try {
+                const token = await getToken()
+                await axios.post('/api/cart/update', {cartData}, {headers:{Authorization: `Bearer ${token}`}} )
 
+                toast.success('Cart updated')
+            } catch (error) {
+                toast.error(error.message)
+            }
+        }
     }
 
     const getCartCount = () => {
