@@ -6,6 +6,7 @@ import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
+import ChatSupport from "@/components/ChatSupport";
 
 const MyOrders = () => {
 
@@ -70,6 +71,7 @@ const MyOrders = () => {
                 </div>
             </div>
             <Footer />
+            <ChatSupport />
         </>
     );
 };
