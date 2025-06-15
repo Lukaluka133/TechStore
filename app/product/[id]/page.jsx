@@ -9,6 +9,7 @@ import { useParams } from "next/navigation";
 import Loading from "@/components/Loading";
 import { useAppContext } from "@/context/AppContext";
 import React from "react";
+import ChatSupport from "@/components/ChatSupport";
 
 const Product = () => {
 
@@ -136,6 +137,7 @@ const Product = () => {
             </div>
         </div>
         <Footer />
+        <ChatSupport />
     </>
     ) : <Loading />
 };
