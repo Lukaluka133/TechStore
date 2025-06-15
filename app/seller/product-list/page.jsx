@@ -7,6 +7,7 @@ import Footer from "@/components/seller/Footer";
 import Loading from "@/components/Loading";
 import axios from "axios";
 import toast from "react-hot-toast";
+import ChatSupport from "@/components/ChatSupport";
 
 const ProductList = () => {
 
@@ -89,6 +90,7 @@ const ProductList = () => {
         </div>
       </div>}
       <Footer />
+      <ChatSupport />
     </div>
   );
 };
