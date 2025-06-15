@@ -7,6 +7,7 @@ import NewsLetter from "@/components/NewsLetter";
 import FeaturedProduct from "@/components/FeaturedProduct";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ChatSupport from "@/components/ChatSupport";
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
         <NewsLetter />
       </div>
       <Footer />
+      <ChatSupport />
     </>
   );
 };
