@@ -5,6 +5,7 @@ import OrderSummary from "@/components/OrderSummary";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { useAppContext } from "@/context/AppContext";
+import ChatSupport from "@/components/ChatSupport";
 
 const Cart = () => {
 
@@ -112,6 +113,7 @@ const Cart = () => {
           </button>
         </div>
         <OrderSummary />
+        <ChatSupport />
       </div>
     </>
   );
