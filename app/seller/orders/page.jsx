@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useAppContext } from "@/context/AppContext";
 import Footer from "@/components/seller/Footer";
 import Loading from "@/components/Loading";
+import ChatSupport from "@/components/ChatSupport";
 
 const Orders = () => {
 
@@ -66,6 +67,7 @@ const Orders = () => {
                 </div>
             </div>}
             <Footer />
+            <ChatSupport />
         </div>
     );
 };
